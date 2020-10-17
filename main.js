@@ -4,7 +4,7 @@ const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitT
 
 async function blockReadLine() {
 
-    var rl = readline.createInterface({
+    const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
         terminal: false
@@ -34,7 +34,7 @@ async function run() {
 }
 
 const round_to_precision = (x, precision) => {
-    var y = +x + (precision === undefined ? 0.5 : precision/2);
+    const y = +x + (precision === undefined ? 0.5 : precision/2);
     return y - (y % (precision === undefined ? 1 : +precision));
 }
 
@@ -133,6 +133,39 @@ const askAddFractions = () => {
     }
 }
 
+const askMultiplyTwoFrctions = () => {
+    const a = getRandomInt(100) / Math.pow(10, getRandomInt(2)+1);
+    const b = getRandomInt(100) / Math.pow(10, getRandomInt(2)+1);
+
+    const aa = new Decimal(a);
+    const bb = new Decimal(b);
+
+    const result = aa.mul(bb);
+    return {
+        question: `${a} x ${b}`,
+        correctAnswer: `${result}`
+    }
+}
+
+const askDivideTwoFrctions = () => {
+    while (true) {
+        const a = getRandomInt(100) / Math.pow(10, getRandomInt(2)+1);
+        const b = getRandomInt(100) / Math.pow(10, getRandomInt(2)+1);
+    
+        const aa = new Decimal(a);
+        const bb = new Decimal(b);
+    
+        const result = aa.div(bb);
+        const strResult = `${result}`;
+        if (strResult.length < 6) {
+            return {
+                question: `${a} : ${b}`,
+                correctAnswer: `${result}`
+            }
+        }
+    }
+}
+
 const askRandomQuestion = () => {
 
     if (Math.random() > 0.6) {
@@ -142,4 +175,14 @@ const askRandomQuestion = () => {
     }
 };
 
-testme(askRandomQuestion);
+const askMulDivQuestion = () => {
+
+    if (Math.random() > 0.6) {
+        return askMultiplyTwoFrctions();
+    } else {
+        return askDivideTwoFrctions();
+    }
+};
+
+
+testme(askMulDivQuestion);
