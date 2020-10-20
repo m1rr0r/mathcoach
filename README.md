@@ -1,3 +1,5 @@
 Hello, Champion!
 
-Are you ready to practice some math?
+Are you ready for some math?
+
+https://m1rr0r.github.io/mathpractice/

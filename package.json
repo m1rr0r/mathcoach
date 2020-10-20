@@ -2,7 +2,7 @@
   "name": "my-app-r",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://m1rr0r.github.io/mathcoach/",
+  "homepage": "https://m1rr0r.github.io/mathpractice/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",

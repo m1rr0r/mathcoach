@@ -31,50 +31,55 @@ export function Question() {
   const [answer, setAnswer] = useState('');
 
   return (
-    <div  className={styles.value}>
+    <div className={styles.value}>
         <div>
             <p>{questionText}</p>
         </div>
         <div>
-            {(!showAnswer) && <p>&nbsp;</p>}
+            {(!showAnswer) && <p className={styles.valuecorrect}>&nbsp;</p>}
 
             {(showAnswer && userAnswerIsTheCorrectAnswer) && (
-                <p>{userAnswer} is correct!</p>
+                <p className={styles.valuecorrect}>{userAnswer} is correct!</p>
             )}
 
             {(showAnswer && !userAnswerIsTheCorrectAnswer) && (
-                <p>Answer: {correctAnswer}</p>
+                <p className={styles.valuewrong}>Answer: {correctAnswer}</p>
             )}
-        </div>
 
+        </div>
+        <form onSubmit={(e) => {
+                e.preventDefault();
+                if (showAnswer) {
+                    const nextQuestion = askMulDivQuestion();
+                    dispatch(askQuestion(nextQuestion));
+                    setAnswer('');
+                } else {
+                    const userAnswer = answer;
+                    dispatch(recordAnswer(`${correctAnswer}` === `${userAnswer}`));
+                    dispatch(submitAnswer({userAnswer}));
+                }
+            }} 
+        >
         <input 
             className={styles.textbox}
             value={answer} 
             onChange={e => setAnswer(e.target.value)}
         />
         {(!showAnswer && <div><button
+            type="submit"
             className={styles.button}
-            onClick={() => {
-                const userAnswer = answer;
-                dispatch(recordAnswer(userAnswer === correctAnswer));
-                dispatch(submitAnswer({userAnswer}));
-            }}
         >
           Submit answer
         </button></div>)}
-        
         {(showAnswer && <div>
             <button
+                type="submit"
                 className={styles.button}
-                onClick={() => {
-                    const nextQuestion = askMulDivQuestion();
-                    dispatch(askQuestion(nextQuestion));
-                    setAnswer('');
-                }}
             >
             Next question
             </button>
         </div>)}
+        </form>
 
     </div>
   );

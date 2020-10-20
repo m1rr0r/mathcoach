@@ -8,14 +8,31 @@
     margin-bottom: 16px;
   }
   
+  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
   .value {
     font-size: 49px;
     padding-left: 16px;
     padding-right: 16px;
     margin-top: 2px;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
   }
-  
+
+  .valuecorrect {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+
+    color: green;
+  }
+
+  .valuewrong {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    color: red;
+  }
+
   .button {
     appearance: none;
     background: none;
